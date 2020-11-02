@@ -58,10 +58,10 @@ Make sure to `View()` the resulting data frame (remember: run `View()` in the Co
 ```{r}
 # Your code here: 
 
-sw_split_name <- starwars %>% 
-  separate(col = name,
-           into = c("name_1", "name_2"),
-           sep = "-")
+sw_split_name <- starwars %>% # Start with starwars
+  separate(col = name, # Separate the name column...
+           into = c("name_1", "name_2"), # Into two columns, 'name_1' & 'name_2'
+           sep = "-") # Separated at the first dash
 
 ```
 
@@ -96,12 +96,12 @@ Make sure to `View()` the resulting data frame (remember: run `View()` in the Co
 ```{r}
 # Your code here:
 
-sw_skin_sep <- starwars %>% 
-  separate(col = skin_color,
-           into = c("skin_1", "skin_2"),
-           sep = ",",
-           extra = "merge",
-           remove = FALSE)
+sw_skin_sep <- starwars %>% # Start from starwars data
+  separate(col = skin_color, # Separate the 'skin_color' column
+           into = c("skin_1", "skin_2"), # Into two columns
+           sep = ",", # Separating at the first comma
+           extra = "merge", # If additional spaces, merger all into second column
+           remove = FALSE) # And *do not* remove the orginal column
 
 ```
 
@@ -180,6 +180,7 @@ ymd("2020-07-16")
 
 ymd("2020/07/16")
 
+# Date format (year-month-day)
 
 ```
 
@@ -205,9 +206,9 @@ In the code chunk below, create a vector (using `c()`, as above) stored as `some
 ```{r}
 # Your code here: 
 
-some_dates <- c(12311992, 07162007, 11012020)
-some_dates_converted <- mdy(some_dates)
-some_dates_converted
+some_dates <- c(12311992, 07162007, 11012020) # Create a vector of dates without spaces
+some_dates_converted <- mdy(some_dates) # Convert to Date, stores as some_dates_converted
+some_dates_converted # Return some_dates_converted
 
 class(some_dates_converted)
 
@@ -255,13 +256,13 @@ Starting from the `lakers` dataset, create a new dataset called `gasol_hookshots
 ```{r}
 # Your code here: 
 
-gasol_hookshots <- lakers %>% 
-  filter(player == "Pau Gasol", type =="hook") %>% 
-  mutate(date = ymd(date)) %>% 
-  mutate(month = month(date))
+gasol_hookshots <- lakers %>% # Start with lakers data
+  filter(player == "Pau Gasol", type =="hook") %>% # Make new dataset for player 'Pau Gasol' and only his 'hook shots'
+  mutate(date = ymd(date)) %>%  # Update date column to "Date" class
+  mutate(month = month(date)) # Add a new column with 'month'
 
-hook_shots_by_month <- gasol_hookshots %>% 
-  count(month) # Number of hook shots per month
+hook_shots_by_month <- gasol_hookshots %>% # Start with 'gasol_hookshots'
+  count(month) # Number of hook shots per month # Add a new column for number of shots per month
 
 hook_shots_by_month # View Gasol's hook shots per month
 ```

@@ -415,10 +415,10 @@ sw_sep_hair &lt;- starwars %&gt;% # Start with starwars
 <p>**Note: You should get a warning about one piece dropped. What happens to the name in Row 49, which contains two dashes? The name following the second dash is dropped.</p>
 <pre class="r"><code># Your code here: 
 
-sw_split_name &lt;- starwars %&gt;% 
-  separate(col = name,
-           into = c(&quot;name_1&quot;, &quot;name_2&quot;),
-           sep = &quot;-&quot;)</code></pre>
+sw_split_name &lt;- starwars %&gt;% # Start with starwars
+  separate(col = name, # Separate the name column...
+           into = c(&quot;name_1&quot;, &quot;name_2&quot;), # Into two columns, &#39;name_1&#39; &amp; &#39;name_2&#39;
+           sep = &quot;-&quot;) # Separated at the first dash</code></pre>
 </div>
 <div id="b.-follow-me" class="section level4">
 <h4>1B. Follow me</h4>
@@ -445,12 +445,12 @@ sw_sep_names &lt;- starwars %&gt;% # Start from starwars data
 <p>Make sure to <code>View()</code> the resulting data frame (remember: run <code>View()</code> in the Console, or click on the object name in the Environment) to ensure it worked as expected.</p>
 <pre class="r"><code># Your code here:
 
-sw_skin_sep &lt;- starwars %&gt;% 
-  separate(col = skin_color,
-           into = c(&quot;skin_1&quot;, &quot;skin_2&quot;),
-           sep = &quot;,&quot;,
-           extra = &quot;merge&quot;,
-           remove = FALSE)</code></pre>
+sw_skin_sep &lt;- starwars %&gt;% # Start from starwars data
+  separate(col = skin_color, # Separate the &#39;skin_color&#39; column
+           into = c(&quot;skin_1&quot;, &quot;skin_2&quot;), # Into two columns
+           sep = &quot;,&quot;, # Separating at the first comma
+           extra = &quot;merge&quot;, # If additional spaces, merger all into second column
+           remove = FALSE) # And *do not* remove the orginal column</code></pre>
 </div>
 </div>
 <div id="tidyrunite" class="section level3">
@@ -511,6 +511,7 @@ ymd(20200716)</code></pre>
 <pre><code>## [1] &quot;2020-07-16&quot;</code></pre>
 <pre class="r"><code>ymd(&quot;2020/07/16&quot;)</code></pre>
 <pre><code>## [1] &quot;2020-07-16&quot;</code></pre>
+<pre class="r"><code># Date format (year-month-day)</code></pre>
 </div>
 <div id="b.-follow-me-1" class="section level4">
 <h4>3B. Follow me</h4>
@@ -530,9 +531,9 @@ my_dates_converted # Return my_dates_converted</code></pre>
 <p>In the code chunk below, create a vector (using <code>c()</code>, as above) stored as <code>some_dates</code> that contains three values that represent dates as numbers, in mdy format: 11061972, 02142007,01301843. Then in the next line, use <code>lubridate::mdy()</code> to return them in date format, storing as a vector <code>some_dates_converted</code>. Write a third line to check the class of that vector.</p>
 <pre class="r"><code># Your code here: 
 
-some_dates &lt;- c(12311992, 07162007, 11012020)
-some_dates_converted &lt;- mdy(some_dates)
-some_dates_converted</code></pre>
+some_dates &lt;- c(12311992, 07162007, 11012020) # Create a vector of dates without spaces
+some_dates_converted &lt;- mdy(some_dates) # Convert to Date, stores as some_dates_converted
+some_dates_converted # Return some_dates_converted</code></pre>
 <pre><code>## [1] &quot;1992-12-31&quot; &quot;2007-07-16&quot; &quot;2020-11-01&quot;</code></pre>
 <pre class="r"><code>class(some_dates_converted)</code></pre>
 <pre><code>## [1] &quot;Date&quot;</code></pre>
@@ -589,13 +590,13 @@ points_by_month</code></pre>
 </ul>
 <pre class="r"><code># Your code here: 
 
-gasol_hookshots &lt;- lakers %&gt;% 
-  filter(player == &quot;Pau Gasol&quot;, type ==&quot;hook&quot;) %&gt;% 
-  mutate(date = ymd(date)) %&gt;% 
-  mutate(month = month(date))
+gasol_hookshots &lt;- lakers %&gt;% # Start with lakers data
+  filter(player == &quot;Pau Gasol&quot;, type ==&quot;hook&quot;) %&gt;% # Make new dataset for player &#39;Pau Gasol&#39; and only his &#39;hook shots&#39;
+  mutate(date = ymd(date)) %&gt;%  # Update date column to &quot;Date&quot; class
+  mutate(month = month(date)) # Add a new column with &#39;month&#39;
 
-hook_shots_by_month &lt;- gasol_hookshots %&gt;% 
-  count(month) # Number of hook shots per month
+hook_shots_by_month &lt;- gasol_hookshots %&gt;% # Start with &#39;gasol_hookshots&#39;
+  count(month) # Number of hook shots per month # Add a new column for number of shots per month
 
 hook_shots_by_month # View Gasol&#39;s hook shots per month</code></pre>
 <pre><code>##   month  n
